@@ -1,29 +1,72 @@
 {
-  "version": "0.0.1",
-  "suggestions": {
-  },
-  "recommendations": {
-  },
-  "attributes": {
+  "groupings": {
   },
   "dependencies": {
+    "rs_utils": ">= 0.0.0"
   },
-  "groupings": {
+  "maintainer": "YOUR_COMPANY_NAME",
+  "attributes": {
+    "about_city/rain": {
+      "required": "recommended",
+      "default": "no",
+      "description": "Is it raining? Yes or No",
+      "calculated": false,
+      "choice": [
+        "yes",
+        "no"
+      ],
+      "type": "string",
+      "display_name": "Raining",
+      "recipes": [
+        "about_city::my_city"
+      ]
+    },
+    "about_city/temperature": {
+      "required": "optional",
+      "description": "Current temperature in the city",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "display_name": "Temperature",
+      "recipes": [
+        "about_city::my_city"
+      ]
+    },
+    "about_city/city_name": {
+      "required": "required",
+      "description": "The city where I currently live.",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "display_name": "City Name",
+      "recipes": [
+        "about_city::my_city"
+      ]
+    }
+  },
+  "conflicting": {
+  },
+  "suggestions": {
   },
   "replacing": {
   },
   "license": "All rights reserved",
-  "maintainer": "YOUR_COMPANY_NAME",
-  "description": "Installs/Configures about_city",
   "platforms": {
   },
-  "recipes": {
+  "version": "0.0.1",
+  "recommendations": {
   },
-  "maintainer_email": "YOUR_EMAIL",
+  "description": "Installs/Configures about_city",
   "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "name": "about_city",
+  "recipes": {
+    "about_city::my_city": "Information about my city"
+  },
   "providing": {
   },
-  "conflicting": {
-  },
-  "name": "about_city"
+  "maintainer_email": "curt@rightscale.com"
 }

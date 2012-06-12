@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "suggestions": {
+  },
+  "recommendations": {
+  },
+  "attributes": {
+  },
+  "dependencies": {
+  },
+  "groupings": {
+  },
+  "replacing": {
+  },
+  "license": "All rights reserved",
+  "maintainer": "YOUR_COMPANY_NAME",
+  "description": "Installs/Configures about_city",
+  "platforms": {
+  },
+  "recipes": {
+  },
+  "maintainer_email": "YOUR_EMAIL",
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "providing": {
+  },
+  "conflicting": {
+  },
+  "name": "about_city"
+}

@@ -10,6 +10,6 @@
 rs_utils_marker :begin
 
 
-package 'hadoop_hbase'
+package 'hadoop'
 
 rs_utils_marker :end

@@ -1,6 +1,6 @@
 
 set[:hadoop][:version] = '1.0.3'
-set[:hbase][:hbase] = '0.94.0'
+set[:hbase][:version] = '0.94.0'
 set[:hadoop][:install_dir]='/home/hadoop'
 set[:hbase][:install_dir]='/home/hbase'
 set[:env][:java_home]='/usr/java/default'

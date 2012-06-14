@@ -1,33 +1,33 @@
 {
-  "platforms": {
-  },
-  "recipes": {
-    "hadoop::do_configure_hadoop": "Configure hadoop",
-    "hadoop::hbase": "Install hbase",
-    "hadoop::default": "Install hadoop"
-  },
   "conflicting": {
-  },
-  "description": "Install and Configure hadoop and hbase.",
-  "license": "All rights reserved",
-  "maintainer_email": "curt@rightscale.com",
-  "name": "hadoop",
-  "suggestions": {
-  },
-  "recommendations": {
-  },
-  "maintainer": "RightScale",
-  "attributes": {
   },
   "providing": {
   },
-  "replacing": {
+  "long_description": "Description\n===========\nInstalls Apache hadoop and hbase\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "description": "Install and Configure hadoop and hbase.",
+  "recommendations": {
   },
   "version": "0.0.1",
+  "attributes": {
+  },
+  "replacing": {
+  },
+  "maintainer_email": "curt@rightscale.com",
+  "recipes": {
+    "hadoop::install_hbase": "Install hbase",
+    "hadoop::install_hadoop": "Install hadoop",
+    "hadoop::do_configure_hadoop": "Configure hadoop"
+  },
+  "suggestions": {
+  },
+  "name": "hadoop",
   "groupings": {
   },
+  "platforms": {
+  },
+  "maintainer": "RightScale",
   "dependencies": {
     "rs_utils": ">= 0.0.0"
   },
-  "long_description": "Description\n===========\nInstalls Apache hadoop and hbase\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n"
+  "license": "All rights reserved"
 }

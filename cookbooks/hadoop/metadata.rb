@@ -9,7 +9,7 @@ version          "0.0.1"
 depends 'rs_utils'
 
 recipe 'hadoop::install_hadoop', 'Install hadoop'
-recipe 'hadoop::do_configure_hadoop', 'Configure hadoop'
+recipe 'hadoop::do_hadoop_config', 'Configure hadoop'
 recipe 'hadoop::install_hbase', 'Install hbase'
-#recipe 'hadoop::do_configure_hbase', 'Configure hbase'
+#recipe 'hadoop::do_hbase_config', 'Configure hbase'
 

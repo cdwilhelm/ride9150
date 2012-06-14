@@ -25,7 +25,7 @@ action :start_hadoop do
 end
 
 # Restart hadoop and hbase
-action :restart do
+action :restart_hadoop do
   log "  Running restart sequence"
   action_stop_hadoop
   sleep 5

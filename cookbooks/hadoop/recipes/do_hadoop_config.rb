@@ -3,7 +3,7 @@ rs_utils_marker :begin
 include_recipe "hadoop::default"
 log "Installing hadoop hadoop-env.sh to #{node[:hadoop][:install_dir]}/conf"
 template "#{node[:hadoop][:install_dir]}/conf/hadoop-env.sh" do
-  source "hadoop-env.sh"
+  source "hadoop-env.sh.erb"
 #  owner "#{node[:tomcat][:app_user]}"
 #  group "#{node[:tomcat][:app_user]}"
   mode "0644"

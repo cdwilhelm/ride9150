@@ -1,33 +1,34 @@
 {
-  "conflicting": {
-  },
-  "long_description": "Description\n===========\nInstalls Apache hadoop and hbase\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
-  "providing": {
-  },
-  "suggestions": {
-  },
-  "recommendations": {
-  },
-  "description": "Install and Configure hadoop and hbase.",
-  "groupings": {
-  },
+  "maintainer_email": "curt@rightscale.com",
   "attributes": {
-  },
-  "dependencies": {
-    "rs_utils": ">= 0.0.0"
-  },
-  "version": "0.0.1",
-  "replacing": {
   },
   "platforms": {
   },
+  "replacing": {
+  },
+  "version": "0.0.1",
   "license": "All rights reserved",
+  "groupings": {
+  },
+  "suggestions": {
+  },
   "recipes": {
+    "hadoop::do_hadoop_init": "Creates new block device and formats the node",
     "hadoop::install_hbase": "Install hbase",
-    "hadoop::do_hadoop_config": "Configure hadoop",
-    "hadoop::install_hadoop": "Install hadoop"
+    "hadoop::install_hadoop": "Install hadoop",
+    "hadoop::do_hadoop_config": "Configure hadoop"
+  },
+  "conflicting": {
   },
   "name": "hadoop",
-  "maintainer_email": "curt@rightscale.com",
+  "dependencies": {
+    "rs_utils": ">= 0.0.0"
+  },
+  "long_description": "Description\n===========\nInstalls Apache hadoop and hbase\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "recommendations": {
+  },
+  "providing": {
+  },
+  "description": "Install and Configure hadoop and hbase.",
   "maintainer": "RightScale"
 }

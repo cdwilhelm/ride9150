@@ -3,14 +3,14 @@
   cookbook_file "/tmp/hadoop-#{node[:hadoop][:version]}-bin.tar.gz" do
     source "hadoop-#{node[:hadoop][:version]}-bin.tar.gz"
     mode "0644"  
-    cookbook 'hadoop_hbase'
+    cookbook 'hadoop'
   end
   
    bash "install_hadoop" do
     flags "-ex"
     code <<-EOH
       tar xzf /tmp/hadoop-#{node[:hadoop][:version]}-bin.tar.gz -C /home/
-      ln /home/hadoop-#{node[:hadoop][:version]} #{node[:hadoop][:install_dir]} 
+      ln -s /home/hadoop-#{node[:hadoop][:version]} #{node[:hadoop][:install_dir]} 
     EOH
     only_if do ::File.exists?("/tmp/hadoop-#{node[:hadoop][:version]}-bin.tar.gz")  end
   end

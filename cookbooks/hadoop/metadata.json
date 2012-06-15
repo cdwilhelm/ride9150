@@ -1,54 +1,53 @@
 {
+  "version": "0.0.1",
+  "groupings": {
+  },
   "license": "All rights reserved",
-  "platforms": {
+  "conflicting": {
   },
   "name": "hadoop",
+  "providing": {
+  },
+  "suggestions": {
+  },
+  "maintainer_email": "curt@rightscale.com",
+  "description": "Install and Configure hadoop and hbase.",
+  "dependencies": {
+    "sys_firewall": ">= 0.0.0",
+    "rs_utils": ">= 0.0.0",
+    "block_device": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "maintainer": "RightScale",
+  "replacing": {
+  },
+  "platforms": {
+  },
+  "long_description": "Description\n===========\nInstalls Apache hadoop and hbase\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
   "recipes": {
+    "hadoop::do_delete_volumes_and_terminate_server": "Deletes any currently attached volumes from the instance and then terminates the machine.",
     "hadoop::do_hbase_init": "Init and start hbase",
     "hadoop::do_hbase_config": "Configure hbase",
-    "hadoop::do_hadoop_init": "Creates new block device and formats the node",
     "hadoop::do_hadoop_config": "Configure hadoop",
     "hadoop::install_hbase": "Install hbase",
-    "hadoop::do_delete_volumes_and_terminate_server": "Deletes any currently attached volumes from the instance and then terminates the machine.",
-    "hadoop::install_hadoop": "Install hadoop"
+    "hadoop::install_hadoop": "Install hadoop",
+    "hadoop::do_hadoop_init": "Creates new block device and formats the node"
   },
-  "version": "0.0.1",
   "attributes": {
     "hadoop/terminate_safety": {
-      "recipes": [
-        "hadoop::do_delete_volumes_and_terminate_server"
-      ],
-      "required": "optional",
+      "display_name": "Terminate Safety",
       "calculated": false,
+      "description": "Prevents the accidental running of the db::do_teminate_server recipe. This recipe will only run if this input variable is overridden and set to \"off\".",
       "choice": [
         "Override the dropdown and set to \"off\" to really run this recipe"
       ],
       "default": "Override the dropdown and set to \"off\" to really run this recipe",
-      "description": "Prevents the accidental running of the db::do_teminate_server recipe. This recipe will only run if this input variable is overridden and set to \"off\".",
       "type": "string",
-      "display_name": "Terminate Safety"
+      "recipes": [
+        "hadoop::do_delete_volumes_and_terminate_server"
+      ],
+      "required": "optional"
     }
-  },
-  "recommendations": {
-  },
-  "dependencies": {
-    "rightscale": ">= 0.0.0",
-    "block_device": ">= 0.0.0",
-    "sys_firewall": ">= 0.0.0",
-    "rs_utils": ">= 0.0.0"
-  },
-  "groupings": {
-  },
-  "maintainer": "RightScale",
-  "long_description": "Description\n===========\nInstalls Apache hadoop and hbase\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
-  "replacing": {
-  },
-  "providing": {
-  },
-  "maintainer_email": "curt@rightscale.com",
-  "conflicting": {
-  },
-  "description": "Install and Configure hadoop and hbase.",
-  "suggestions": {
   }
 }

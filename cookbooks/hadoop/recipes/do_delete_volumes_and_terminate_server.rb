@@ -6,7 +6,7 @@
 # if applicable, other agreements such as a RightScale Master Subscription Agreement.
 
 
-rightscale_marker :begin
+rs_utils_marker :begin
 
 raise "Server terminate safety not off.  Override db/terminate_safety to run this recipe" unless node[:hadoop][:terminate_safety] == "off"
 
@@ -27,4 +27,4 @@ rs_shutdown "Terminate the server now" do
   action :terminate
 end
 
-rightscale_marker :end
+rs_utils_marker :end

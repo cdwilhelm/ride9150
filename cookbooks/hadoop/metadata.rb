@@ -7,7 +7,6 @@ version          "0.0.1"
 
 
 depends 'rs_utils'
-depends "rightscale"
 depends "block_device"
 depends "sys_firewall"
 

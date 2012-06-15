@@ -1,36 +1,36 @@
 {
+  "recommendations": {
+  },
+  "maintainer": "RightScale",
   "name": "hadoop",
   "recipes": {
-    "hadoop::do_hadoop_init": "Creates new block device and formats the node",
     "hadoop::do_hbase_config": "Configure hbase",
+    "hadoop::do_hadoop_init": "Creates new block device and formats the node",
     "hadoop::install_hadoop": "Install hadoop",
-    "hadoop::do_setup_ssh": "Setup SSH for hadoop",
-    "hadoop::install_hbase": "Install hbase",
-    "hadoop::do_hadoop_config": "Configure hadoop"
+    "hadoop::do_hbase_init": "Init and start hbase",
+    "hadoop::do_hadoop_config": "Configure hadoop",
+    "hadoop::install_hbase": "Install hbase"
   },
-  "description": "Install and Configure hadoop and hbase.",
-  "version": "0.0.1",
-  "recommendations": {
+  "attributes": {
+  },
+  "replacing": {
+  },
+  "providing": {
   },
   "platforms": {
   },
   "groupings": {
   },
-  "conflicting": {
-  },
+  "description": "Install and Configure hadoop and hbase.",
   "dependencies": {
     "rs_utils": ">= 0.0.0"
   },
-  "maintainer_email": "curt@rightscale.com",
-  "license": "All rights reserved",
-  "replacing": {
-  },
-  "providing": {
-  },
   "suggestions": {
   },
-  "maintainer": "RightScale",
-  "long_description": "Description\n===========\nInstalls Apache hadoop and hbase\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
-  "attributes": {
-  }
+  "license": "All rights reserved",
+  "version": "0.0.1",
+  "maintainer_email": "curt@rightscale.com",
+  "conflicting": {
+  },
+  "long_description": "Description\n===========\nInstalls Apache hadoop and hbase\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n"
 }

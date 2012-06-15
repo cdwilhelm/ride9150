@@ -20,7 +20,6 @@ log "  Format node"
 execute "namenode formt" do
   command "#{node[:hadoop][:install_dir]}/bin/hadoop namenode -format"
   action :run
-  environment ({'JAVA_HOME' => node[:env][:java_home]})
 end
 
 
@@ -29,7 +28,6 @@ log "  Running start sequence"
 execute "start hadoop" do
   command "#{node[:hadoop][:install_dir]}/bin/start-all.sh"
   action :run
-  environment ({'JAVA_HOME' => node[:env][:java_home]})
 end
 
 

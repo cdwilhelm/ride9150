@@ -1,8 +1,14 @@
 rs_utils_marker :begin
 
-  log "  Running start sequence"
+  log "  creating hdfs /hbase dir"
 execute "create hbase hdfs dir" do
-  command "#{node[:hbase][:install_dir]}/bin/start-hbase.sh"
+  command "#{node[:hbase][:install_dir]}/bin/hadoop fs -mkdir /hbase"
+  action :run
+end
+
+  log "  set /hbase permissions"
+execute "create hbase hdfs dir" do
+  command "#{node[:hbase][:install_dir]}/bin/hadoop fs -chown hbase /hbase"
   action :run
 end
 

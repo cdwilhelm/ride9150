@@ -27,3 +27,11 @@ attribute "hadoop/terminate_safety",
   :default => "Override the dropdown and set to \"off\" to really run this recipe",
   :required => "optional",
   :recipes => [ "hadoop::do_delete_volumes_and_terminate_server" ]
+
+# == Backup/Restore
+#
+attribute "db/backup/lineage",
+  :display_name => "Hadoop Backup Lineage",
+  :description => "The prefix that will be used to name/locate the backup of hbase. Note: For servers running on Rackspace, this value also indicates the Cloud Files container to use for storing primary backups. If a Cloud Files container with this name does not already exist, the setup process creates one.",
+  :required => "required",
+  :recipes => ["hadoop::do_hadoop_init"]

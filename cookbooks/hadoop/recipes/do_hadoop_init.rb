@@ -13,7 +13,7 @@ include_recipe 'block_device::default'
 
 log "  Creating block device..."
 block_device NICKNAME do
-  lineage node[:db][:backup][:lineage]
+#  lineage node[:hadoop][:backup][:lineage]
   action :create
 end
 

@@ -32,14 +32,14 @@ attribute "hadoop/dns/nodename/fqdn",
   :description => "FQDN of the NameNode",
   :type => "string",
   :required => "required",
-  :recipes => [ "hadoop::do_hadoop_init" ]
+  :recipes => [ "hadoop::do_hadoop_config" ]
 
 attribute "hadoop/dns/datanode/fqdn",
   :display_name => "Hadoop DataNode Host nane ",
   :description => "FQDN of the DataNode",
   :type => "string",
   :required => "optional",
-  :recipes => [ "hadoop::do_hadoop_init" ]
+  :recipes => [ "hadoop::do_hadoop_config" ]
 
 #attribute "hadoop/hbase/master",
 #  :display_name => "Hbase master hostname",
@@ -53,7 +53,7 @@ attribute "hbase/dns/zookeeper/fqdn",
   :description => "FQDN of the zookeeper ",
   :type => "string",
   :required => "required",
-  :recipes => [ "hadoop::do_hbase_init" ]
+  :recipes => [ "hadoop::do_hbase_config" ]
 
 
 attribute "hadoop/terminate_safety",

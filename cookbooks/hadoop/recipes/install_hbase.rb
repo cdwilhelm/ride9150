@@ -1,4 +1,5 @@
   rs_utils_marker :begin
+  if node[:hbase][:install]
   log "  Installing hbase..."
   cookbook_file "/tmp/hbase-#{node[:hbase][:version]}.tar.gz" do
     source "hbase-#{node[:hbase][:version]}.tar.gz"
@@ -14,5 +15,5 @@
     EOH
     only_if do ::File.exists?("/tmp/hbase-#{node[:hbase][:version]}.tar.gz")  end
   end
-  
+  end
   rs_utils_marker :end

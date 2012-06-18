@@ -34,6 +34,13 @@ attribute "hadoop/dns/nodename/fqdn",
   :required => "required",
   :recipes => [ "hadoop::do_hadoop_config" ]
 
+attribute "hadoop/dns/nodename/id",
+  :display_name => "Hadoop NameNode Host nane ",
+  :description => "FQDN of the NameNode",
+  :type => "string",
+  :required => "required",
+  :recipes => [ "hadoop::do_hadoop_config" ]
+
 attribute "hadoop/dns/datanode/fqdn",
   :display_name => "Hadoop DataNode Host nane ",
   :description => "FQDN of the DataNode",
@@ -41,20 +48,19 @@ attribute "hadoop/dns/datanode/fqdn",
   :required => "optional",
   :recipes => [ "hadoop::do_hadoop_config" ]
 
-#attribute "hadoop/hbase/master",
-#  :display_name => "Hbase master hostname",
-#  :description => "FQDN of the Hbase master hostname",
-#  :type => "string",
-#  :required => "required",
-#  :recipes => [ "hadoop::do_hbase_init" ]
-
-attribute "hbase/dns/zookeeper/fqdn",
-  :display_name => "Hbase zookeeper hostname",
-  :description => "FQDN of the zookeeper ",
+attribute "hadoop/dns/datanode/id",
+  :display_name => "Hadoop DataNode Host nane ",
+  :description => "FQDN of the DataNode",
   :type => "string",
+  :required => "optional",
+  :recipes => [ "hadoop::do_hadoop_config" ]
+# == Backup/Restore
+#
+attribute "hadoop/backup/lineage",
+  :display_name => "Hadoop Backup Lineage",
+  :description => "The prefix that will be used to name/locate the backup of hbase. Note: For servers running on Rackspace, this value also indicates the Cloud Files container to use for storing primary backups. If a Cloud Files container with this name does not already exist, the setup process creates one.",
   :required => "required",
-  :recipes => [ "hadoop::do_hbase_config" ]
-
+  :recipes => ["hadoop::do_hadoop_init"]
 
 attribute "hadoop/terminate_safety",
   :display_name => "Terminate Safety",
@@ -65,10 +71,28 @@ attribute "hadoop/terminate_safety",
   :required => "optional",
   :recipes => [ "hadoop::do_delete_volumes_and_terminate_server" ]
 
-# == Backup/Restore
-#
-attribute "hadoop/backup/lineage",
-  :display_name => "Hadoop Backup Lineage",
-  :description => "The prefix that will be used to name/locate the backup of hbase. Note: For servers running on Rackspace, this value also indicates the Cloud Files container to use for storing primary backups. If a Cloud Files container with this name does not already exist, the setup process creates one.",
+attribute "hbase/dns/zookeeper/fqdn",
+  :display_name => "Hbase zookeeper hostname",
+  :description => "FQDN of the zookeeper ",
+  :type => "string",
   :required => "required",
-  :recipes => ["hadoop::do_hadoop_init"]
+  :recipes => [ "hadoop::do_hbase_config" ]
+
+attribute "hbase/dns/zookeeper/id",
+  :display_name => "Hbase zookeeper hostname",
+  :description => "FQDN of the zookeeper ",
+  :type => "string",
+  :required => "required",
+  :recipes => [ "hadoop::do_hbase_config" ]
+
+attribute "hbase/install",
+  :display_name => "Install hbase",
+  :description => "Install hbase on this host.",
+  :default=>"true",
+  :choose=>["true", "false"],
+  :type => "string",
+  :required => "optional",
+  :recipes => [ "hadoop::install_hbase" ]
+
+
+

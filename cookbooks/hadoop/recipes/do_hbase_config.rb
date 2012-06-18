@@ -19,4 +19,13 @@ template "#{node[:hbase][:install_dir]}/conf/hbase-site.xml" do
 
 end
 
+log "Installing hbase regionservers  to #{node[:hbase][:install_dir]}/conf"
+template "#{node[:hbase][:install_dir]}/conf/regionservers" do
+  source "regionservers.erb"
+#  owner "#{node[:tomcat][:app_user]}"
+#  group "#{node[:tomcat][:app_user]}"
+  mode "0644"
+
+end
+
 rs_utils_marker :end

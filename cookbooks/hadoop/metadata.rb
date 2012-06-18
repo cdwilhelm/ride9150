@@ -28,28 +28,28 @@ recipe "hadoop::do_restart_hbase", "Restart Hbase"
 
 
 attribute "hadoop/dns/nodename/fqdn",
-  :display_name => "Hadoop NameNode Host nane ",
+  :display_name => "Hadoop NameNode Host name ",
   :description => "FQDN of the NameNode",
   :type => "string",
   :required => "required",
   :recipes => [ "hadoop::do_hadoop_config" ]
 
 attribute "hadoop/dns/nodename/id",
-  :display_name => "Hadoop NameNode Host nane ",
+  :display_name => "Hadoop NameNode Host Id ",
   :description => "FQDN of the NameNode",
   :type => "string",
   :required => "required",
   :recipes => [ "hadoop::do_hadoop_config" ]
 
 attribute "hadoop/dns/datanode/fqdn",
-  :display_name => "Hadoop DataNode Host nane ",
+  :display_name => "Hadoop DataNode Host name ",
   :description => "FQDN of the DataNode",
   :type => "string",
   :required => "optional",
   :recipes => [ "hadoop::do_hadoop_config" ]
 
 attribute "hadoop/dns/datanode/id",
-  :display_name => "Hadoop DataNode Host nane ",
+  :display_name => "Hadoop DataNode Host ID ",
   :description => "FQDN of the DataNode",
   :type => "string",
   :required => "optional",
@@ -79,7 +79,7 @@ attribute "hbase/dns/zookeeper/fqdn",
   :recipes => [ "hadoop::do_hbase_config" ]
 
 attribute "hbase/dns/zookeeper/id",
-  :display_name => "Hbase zookeeper hostname",
+  :display_name => "Hbase zookeeper hostname id",
   :description => "FQDN of the zookeeper ",
   :type => "string",
   :required => "required",

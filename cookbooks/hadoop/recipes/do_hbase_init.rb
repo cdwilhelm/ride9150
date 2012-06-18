@@ -20,7 +20,8 @@ end
 
 hbase_register_zookeeper
 
-
+hadoop "install hbase" do
 action :start_hbase
+end
 
 rs_utils_marker :end

@@ -27,4 +27,20 @@ template "#{node[:hadoop][:install_dir]}/conf/hdfs-site.xml" do
 
 end
 
+log "Installing hadoop masters to #{node[:hadoop][:install_dir]}/conf"
+template "#{node[:hadoop][:install_dir]}/conf/masters" do
+  source "masters.erb"
+#  owner "#{node[:tomcat][:app_user]}"
+#  group "#{node[:tomcat][:app_user]}"
+  mode "0644"
+
+end
+log "Installing hadoop slaves to #{node[:hadoop][:install_dir]}/conf"
+template "#{node[:hadoop][:install_dir]}/conf/slaves" do
+  source "slaves.erb"
+#  owner "#{node[:tomcat][:app_user]}"
+#  group "#{node[:tomcat][:app_user]}"
+  mode "0644"
+
+end
 rs_utils_marker :end

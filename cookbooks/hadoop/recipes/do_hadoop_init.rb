@@ -15,7 +15,9 @@ log "  Creating block device..."
 block_device NICKNAME do
 #  lineage node[:hadoop][:backup][:lineage]
   action :create
+  not_if "test -e #{node.block_device.devices.device1.mount_point}"
 end
+
 
 hadoop_register_nodename
 
@@ -33,8 +35,9 @@ end
 #  command "#{node[:hadoop][:install_dir]}/bin/start-all.sh"
 #  action :run
 #end
-
-action :start_haoodp
+hadoop "install" do
+  action :start_hadoop
+end
 
 
 rs_utils_marker :end

@@ -1,111 +1,168 @@
 {
-  "version": "0.0.1",
+  "recipes": {
+    "hadoop::do_restart_hadoop": "Restart Hadoop",
+    "hadoop::do_start_hadoop": "Start Hadoop",
+    "hadoop::do_stop_hadoop": "Stop Hadoop",
+    "hadoop::do_hadoop_init": "Creates new block device and formats the node",
+    "hadoop::do_hbase_config": "Configure hbase",
+    "hadoop::install_hbase": "Install hbase",
+    "hadoop::install_hadoop": "Install hadoop",
+    "hadoop::do_restart_hbase": "Restart Hbase",
+    "hadoop::do_delete_volumes_and_terminate_server": "Deletes any currently attached volumes from the instance and then terminates the machine.",
+    "hadoop::do_hbase_init": "Init and start hbase",
+    "hadoop::do_hadoop_config": "Configure hadoop",
+    "hadoop::do_start_hbase": "Stop Hbase"
+  },
+  "platforms": {
+  },
+  "maintainer": "RightScale",
   "dependencies": {
     "sys_dns": ">= 0.0.0",
     "sys_firewall": ">= 0.0.0",
     "rs_utils": ">= 0.0.0",
     "block_device": ">= 0.0.0"
   },
+  "replacing": {
+  },
+  "license": "All rights reserved",
+  "maintainer_email": "curt@rightscale.com",
   "attributes": {
-    "hbase/dns/zookeeper/fqdn": {
-      "required": "required",
-      "type": "string",
-      "description": "FQDN of the zookeeper ",
-      "display_name": "Hbase zookeeper hostname",
-      "calculated": false,
-      "recipes": [
-        "hadoop::do_hbase_config"
-      ],
-      "choice": [
-
-      ]
-    },
-    "hadoop/backup/lineage": {
-      "required": "required",
-      "type": "string",
-      "description": "The prefix that will be used to name/locate the backup of hbase. Note: For servers running on Rackspace, this value also indicates the Cloud Files container to use for storing primary backups. If a Cloud Files container with this name does not already exist, the setup process creates one.",
-      "display_name": "Hadoop Backup Lineage",
-      "calculated": false,
-      "recipes": [
-        "hadoop::do_hadoop_init"
-      ],
-      "choice": [
-
-      ]
-    },
-    "hadoop/dns/nodename/fqdn": {
-      "required": "required",
-      "type": "string",
-      "description": "FQDN of the NameNode",
-      "display_name": "Hadoop NameNode Host nane ",
-      "calculated": false,
+    "hadoop/dns/datanode/id": {
       "recipes": [
         "hadoop::do_hadoop_config"
       ],
+      "calculated": false,
+      "type": "string",
+      "description": "FQDN of the DataNode",
       "choice": [
 
-      ]
+      ],
+      "required": "optional",
+      "display_name": "Hadoop DataNode Host nane "
+    },
+    "hadoop/dns/nodename/fqdn": {
+      "recipes": [
+        "hadoop::do_hadoop_config"
+      ],
+      "calculated": false,
+      "type": "string",
+      "description": "FQDN of the NameNode",
+      "choice": [
+
+      ],
+      "required": "required",
+      "display_name": "Hadoop NameNode Host nane "
     },
     "hadoop/terminate_safety": {
-      "required": "optional",
-      "type": "string",
-      "description": "Prevents the accidental running of the db::do_teminate_server recipe. This recipe will only run if this input variable is overridden and set to \"off\".",
-      "display_name": "Terminate Safety",
-      "calculated": false,
       "recipes": [
         "hadoop::do_delete_volumes_and_terminate_server"
       ],
       "default": "Override the dropdown and set to \"off\" to really run this recipe",
+      "calculated": false,
+      "type": "string",
+      "description": "Prevents the accidental running of the db::do_teminate_server recipe. This recipe will only run if this input variable is overridden and set to \"off\".",
       "choice": [
         "Override the dropdown and set to \"off\" to really run this recipe"
-      ]
-    },
-    "hadoop/dns/datanode/fqdn": {
+      ],
       "required": "optional",
-      "type": "string",
-      "description": "FQDN of the DataNode",
-      "display_name": "Hadoop DataNode Host nane ",
-      "calculated": false,
+      "display_name": "Terminate Safety"
+    },
+    "hadoop/dns/nodename/id": {
       "recipes": [
         "hadoop::do_hadoop_config"
       ],
+      "calculated": false,
+      "type": "string",
+      "description": "FQDN of the NameNode",
       "choice": [
 
-      ]
+      ],
+      "required": "required",
+      "display_name": "Hadoop NameNode Host nane "
+    },
+    "hbase/install": {
+      "recipes": [
+        "hadoop::install_hbase"
+      ],
+      "default": "true",
+      "calculated": false,
+      "type": "string",
+      "description": "Install hbase on this host.",
+      "choose": [
+        "true",
+        "false"
+      ],
+      "choice": [
+
+      ],
+      "required": "optional",
+      "display_name": "Install hbase"
+    },
+    "hadoop/dns/datanode/fqdn": {
+      "recipes": [
+        "hadoop::do_hadoop_config"
+      ],
+      "calculated": false,
+      "type": "string",
+      "description": "FQDN of the DataNode",
+      "choice": [
+
+      ],
+      "required": "optional",
+      "display_name": "Hadoop DataNode Host nane "
+    },
+    "hbase/dns/zookeeper/id": {
+      "recipes": [
+        "hadoop::do_hbase_config"
+      ],
+      "calculated": false,
+      "type": "string",
+      "description": "FQDN of the zookeeper ",
+      "choice": [
+
+      ],
+      "required": "required",
+      "display_name": "Hbase zookeeper hostname"
+    },
+    "hbase/dns/zookeeper/fqdn": {
+      "recipes": [
+        "hadoop::do_hbase_config"
+      ],
+      "calculated": false,
+      "type": "string",
+      "description": "FQDN of the zookeeper ",
+      "choice": [
+
+      ],
+      "required": "required",
+      "display_name": "Hbase zookeeper hostname"
+    },
+    "hadoop/backup/lineage": {
+      "recipes": [
+        "hadoop::do_hadoop_init"
+      ],
+      "calculated": false,
+      "type": "string",
+      "description": "The prefix that will be used to name/locate the backup of hbase. Note: For servers running on Rackspace, this value also indicates the Cloud Files container to use for storing primary backups. If a Cloud Files container with this name does not already exist, the setup process creates one.",
+      "choice": [
+
+      ],
+      "required": "required",
+      "display_name": "Hadoop Backup Lineage"
     }
   },
-  "recommendations": {
+  "providing": {
   },
-  "platforms": {
-  },
-  "maintainer": "RightScale",
-  "description": "Install and Configure hadoop and hbase.",
   "conflicting": {
   },
   "suggestions": {
   },
-  "recipes": {
-    "hadoop::do_start_hbase": "Stop Hbase",
-    "hadoop::do_delete_volumes_and_terminate_server": "Deletes any currently attached volumes from the instance and then terminates the machine.",
-    "hadoop::do_stop_hadoop": "Stop Hadoop",
-    "hadoop::do_restart_hadoop": "Restart Hadoop",
-    "hadoop::install_hbase": "Install hbase",
-    "hadoop::do_hadoop_init": "Creates new block device and formats the node",
-    "hadoop::do_start_hadoop": "Start Hadoop",
-    "hadoop::do_hadoop_config": "Configure hadoop",
-    "hadoop::do_hbase_config": "Configure hbase",
-    "hadoop::do_hbase_init": "Init and start hbase",
-    "hadoop::do_restart_hbase": "Restart Hbase",
-    "hadoop::install_hadoop": "Install hadoop"
-  },
+  "description": "Install and Configure hadoop and hbase.",
+  "name": "hadoop",
+  "version": "0.0.1",
   "groupings": {
   },
-  "providing": {
-  },
-  "maintainer_email": "curt@rightscale.com",
   "long_description": "Description\n===========\nInstalls Apache hadoop and hbase\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
-  "name": "hadoop",
-  "replacing": {
-  },
-  "license": "All rights reserved"
+  "recommendations": {
+  }
 }

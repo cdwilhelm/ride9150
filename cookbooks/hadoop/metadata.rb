@@ -21,6 +21,7 @@ recipe "hadoop::do_delete_volumes_and_terminate_server", "Deletes any currently 
 recipe "hadoop::do_start_hadoop", "Start Hadoop"
 recipe "hadoop::do_start_hbase", "Start Hbase"
 recipe "hadoop::do_stop_hadoop", "Stop Hadoop"
+recipe "hadoop::do_stop_hadoop", "Stop Hadoop"
 recipe "hadoop::do_start_hbase", "Stop Hbase"
 recipe "hadoop::do_restart_hadoop", "Restart Hadoop"
 recipe "hadoop::do_restart_hbase", "Restart Hbase"

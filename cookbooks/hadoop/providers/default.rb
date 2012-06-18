@@ -27,7 +27,36 @@ end
 # Restart hadoop and hbase
 action :restart_hadoop do
   log "  Running restart sequence"
-  action_stop_hadoop
+  action :stop_hadoop
   sleep 5
-  action_start_hadoop
+  action :start_hadoop
+end
+
+# Stop  hbase
+action :stop_hbase do
+  log "  Running stop sequence"
+  execute "stop hbase" do
+    command "#{node[:hbase][:install_dir]}/bin/stop-hbase.sh"
+    action :run
+  end
+
+end
+
+# Start and hbase
+action :start_hbase do
+  log "  Running start sequence"
+  execute "start hbase" do
+    command "#{node[:hbase][:install_dir]}/bin/start-hbase.sh"
+    action :run
+  end
+
+end
+
+
+# Restart hbase
+action :restart_hbase do
+  log "  Running restart sequence"
+  action :stop_hbase
+  sleep 5
+  action :start_hbase
 end

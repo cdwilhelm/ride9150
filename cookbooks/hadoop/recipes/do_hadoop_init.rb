@@ -17,6 +17,7 @@ block_device NICKNAME do
   action :create
 end
 
+hadoop_register_nodename
 
 # add if namenode server, execute this.
 log "  Format node"
@@ -27,12 +28,13 @@ end
 
 
   
-log "  Running start sequence"
-execute "start hadoop" do
-  command "#{node[:hadoop][:install_dir]}/bin/start-all.sh"
-  action :run
-end
+#log "  Running start sequence"
+#execute "start hadoop" do
+#  command "#{node[:hadoop][:install_dir]}/bin/start-all.sh"
+#  action :run
+#end
 
+action :start_haoodp
 
 
 rs_utils_marker :end

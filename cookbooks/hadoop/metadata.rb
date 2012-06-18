@@ -9,6 +9,7 @@ version          "0.0.1"
 depends 'rs_utils'
 depends "block_device"
 depends "sys_firewall"
+depends "sys_dns"
 
 recipe 'hadoop::install_hadoop', 'Install hadoop'
 recipe 'hadoop::do_hadoop_config', 'Configure hadoop'
@@ -17,6 +18,41 @@ recipe 'hadoop::install_hbase', 'Install hbase'
 recipe 'hadoop::do_hbase_config', 'Configure hbase'
 recipe 'hadoop::do_hbase_init', 'Init and start hbase'
 recipe "hadoop::do_delete_volumes_and_terminate_server", "Deletes any currently attached volumes from the instance and then terminates the machine."
+recipe "hadoop::do_start_hadoop", "Start Hadoop"
+recipe "hadoop::do_start_hbase", "Start Hbase"
+recipe "hadoop::do_stop_hadoop", "Stop Hadoop"
+recipe "hadoop::do_start_hbase", "Stop Hbase"
+recipe "hadoop::do_restart_hadoop", "Restart Hadoop"
+recipe "hadoop::do_restart_hbase", "Restart Hbase"
+
+
+attribute "hadoop/dns/nodename/fqdn",
+  :display_name => "Hadoop NameNode Host nane ",
+  :description => "FQDN of the NameNode",
+  :type => "string",
+  :required => "required",
+  :recipes => [ "hadoop::do_hadoop_init" ]
+
+attribute "hadoop/dns/datanode/fqdn",
+  :display_name => "Hadoop DataNode Host nane ",
+  :description => "FQDN of the DataNode",
+  :type => "string",
+  :required => "optional",
+  :recipes => [ "hadoop::do_hadoop_init" ]
+
+#attribute "hadoop/hbase/master",
+#  :display_name => "Hbase master hostname",
+#  :description => "FQDN of the Hbase master hostname",
+#  :type => "string",
+#  :required => "required",
+#  :recipes => [ "hadoop::do_hbase_init" ]
+
+attribute "hbase/dns/zookeeper/fqdn",
+  :display_name => "Hbase zookeeper hostname",
+  :description => "FQDN of the zookeeper ",
+  :type => "string",
+  :required => "required",
+  :recipes => [ "hadoop::do_hbase_init" ]
 
 
 attribute "hadoop/terminate_safety",
@@ -30,7 +66,7 @@ attribute "hadoop/terminate_safety",
 
 # == Backup/Restore
 #
-attribute "db/backup/lineage",
+attribute "hadoop/backup/lineage",
   :display_name => "Hadoop Backup Lineage",
   :description => "The prefix that will be used to name/locate the backup of hbase. Note: For servers running on Rackspace, this value also indicates the Cloud Files container to use for storing primary backups. If a Cloud Files container with this name does not already exist, the setup process creates one.",
   :required => "required",

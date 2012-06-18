@@ -24,13 +24,13 @@
 <configuration>
   <property>
     <name>hbase.zookeeper.quorum</name>
-    <value>localhost</value>
+    <value><%= node[:hbase][:dns][:zookeeper][:fqdn] %></value>
     <description>The directory shared by region servers.
     </description>
   </property>
   <property>
     <name>hbase.rootdir</name>
-    <value>hdfs://localhost/hbase</value>
+    <value>hdfs://<%= node[:hadoop][:dns][:nodename][:fqdn] %>/hbase</value>
   </property>
 
 </configuration>

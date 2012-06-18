@@ -12,12 +12,15 @@ execute "create hbase hdfs dir" do
   action :run
 end
 
-log "  Running start sequence"
-execute "start hbase" do
-  command "#{node[:hbase][:install_dir]}/bin/start-hbase.sh"
-  action :run
-end
+#log "  Running start sequence"
+#execute "start hbase" do
+#  command "#{node[:hbase][:install_dir]}/bin/start-hbase.sh"
+#  action :run
+#end
+
+hbase_register_zookeeper
 
 
+action :start_hbase
 
 rs_utils_marker :end

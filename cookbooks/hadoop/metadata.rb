@@ -14,6 +14,7 @@ depends "sys_dns"
 recipe 'hadoop::install_hadoop', 'Install hadoop'
 recipe 'hadoop::do_hadoop_config', 'Configure hadoop'
 recipe 'hadoop::do_hadoop_init', 'Creates new block device and formats the node'
+recipe 'hadoop::do_hadoop_update_masters', 'Update masters file with all namenode hostnames.'
 recipe 'hadoop::install_hbase', 'Install hbase'
 recipe 'hadoop::do_hbase_config', 'Configure hbase'
 recipe 'hadoop::do_hbase_init', 'Init and start hbase'
@@ -26,6 +27,13 @@ recipe "hadoop::do_start_hbase", "Stop Hbase"
 recipe "hadoop::do_restart_hadoop", "Restart Hadoop"
 recipe "hadoop::do_restart_hbase", "Restart Hbase"
 
+attribute "hadoop/node/type",
+  :display_name => "Hadoop node type",
+  :description => "Hadoop node type",
+  :choose=> ['namenode','datanode'],
+  :type => "string",
+  :required => "required",
+  :recipes => [ "hadoop::do_hadoop_init" ]
 
 attribute "hadoop/dns/nodename/fqdn",
   :display_name => "Hadoop NameNode Host name ",

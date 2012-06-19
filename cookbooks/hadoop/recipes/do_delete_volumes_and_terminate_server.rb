@@ -16,7 +16,7 @@ end
 
 NICKNAME = get_device_or_default(node, :device1, :nickname)
 
-log "  Detach and delete volume..."
+log "  Detach and delete volume... #{NICKNAME}"
 block_device NICKNAME do
   action :reset
 end

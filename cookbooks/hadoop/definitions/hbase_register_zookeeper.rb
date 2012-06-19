@@ -19,5 +19,6 @@ define :hbase_register_zookeeper do
     action :set_private
   end
   
+  right_link_tag "hadoop:hbase_type=zookeeper"
 
 end

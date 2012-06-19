@@ -19,5 +19,7 @@ define :hadoop_register_nodename do
     action :set_private
   end
   
+  right_link_tag "hadoop:node_type=namenode"
+
 
 end

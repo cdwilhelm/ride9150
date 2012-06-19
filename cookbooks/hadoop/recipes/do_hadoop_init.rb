@@ -13,20 +13,24 @@ include_recipe 'block_device::default'
 
 log "  Creating block device..."
 block_device NICKNAME do
-#  lineage node[:hadoop][:backup][:lineage]
+  #  lineage node[:hadoop][:backup][:lineage]
   action :create
   not_if "test -e #{node.block_device.devices.device1.mount_point}"
 end
 
 
-hadoop_register_nodename
+if node.hadoop.node.type=='namenode'
+  hadoop_register_nodename
 
-# add if namenode server, execute this.
-log "  Format node"
-execute "namenode formt" do
-  command "#{node[:hadoop][:install_dir]}/bin/hadoop namenode -format"
-  action :run
+  # add if namenode server, execute this.
+  log "  Format node"
+  execute "namenode formt" do
+    command "#{node[:hadoop][:install_dir]}/bin/hadoop namenode -format"
+    action :run
+    only_if node.hadoop.node.type=='namenode'
+  end
 end
+
 
 
   

@@ -60,3 +60,9 @@ action :restart_hbase do
   sleep 5
   action :start_hbase
 end
+
+action :update_slaves do
+  
+  
+  
+end

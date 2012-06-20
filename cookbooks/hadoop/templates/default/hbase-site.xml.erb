@@ -30,7 +30,7 @@
   </property>
   <property>
     <name>hbase.rootdir</name>
-    <value>hdfs://<%= node[:hadoop][:dns][:nodename][:fqdn] %>/hbase</value>
+    <value>hdfs://<%= node[:hadoop][:dns][:namenode][:fqdn] %>/hbase</value>
   </property>
 
 </configuration>

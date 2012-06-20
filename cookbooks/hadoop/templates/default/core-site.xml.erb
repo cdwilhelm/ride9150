@@ -7,6 +7,6 @@
 
   <property>
     <name>fs.default.name</name>
-    <value>hdfs://<%= node[:hadoop][:dns][:nodename][:fqdn]  %>/</value>
+    <value>hdfs://<%= node[:hadoop][:dns][:namenode][:fqdn]  %>/</value>
   </property>
 </configuration>

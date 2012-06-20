@@ -30,38 +30,26 @@ recipe "hadoop::do_restart_hbase", "Restart Hbase"
 attribute "hadoop/node/type",
   :display_name => "Hadoop node type",
   :description => "Hadoop node type",
-  :choose=> ['namenode','datanode'],
+  :choice => ['namenode','datanode'],
+  :default=>'namenode',
   :type => "string",
   :required => "required",
   :recipes => [ "hadoop::do_hadoop_init" ]
 
-attribute "hadoop/dns/nodename/fqdn",
-  :display_name => "Hadoop NameNode Host name ",
+attribute "hadoop/dns/fqdn",
+  :display_name => "Hadoop Host name ",
   :description => "FQDN of the NameNode",
   :type => "string",
   :required => "required",
   :recipes => [ "hadoop::do_hadoop_config" ]
 
-attribute "hadoop/dns/nodename/id",
-  :display_name => "Hadoop NameNode Host Id ",
-  :description => "FQDN of the NameNode",
+attribute "hadoop/dns/id",
+  :display_name => "Hadoop Host Id ",
+  :description => "FQDN of the Host",
   :type => "string",
   :required => "required",
   :recipes => [ "hadoop::do_hadoop_config" ]
 
-attribute "hadoop/dns/datanode/fqdn",
-  :display_name => "Hadoop DataNode Host name ",
-  :description => "FQDN of the DataNode",
-  :type => "string",
-  :required => "optional",
-  :recipes => [ "hadoop::do_hadoop_config" ]
-
-attribute "hadoop/dns/datanode/id",
-  :display_name => "Hadoop DataNode Host ID ",
-  :description => "FQDN of the DataNode",
-  :type => "string",
-  :required => "optional",
-  :recipes => [ "hadoop::do_hadoop_config" ]
 # == Backup/Restore
 #
 attribute "hadoop/backup/lineage",
@@ -83,15 +71,37 @@ attribute "hbase/dns/zookeeper/fqdn",
   :display_name => "Hbase zookeeper hostname",
   :description => "FQDN of the zookeeper ",
   :type => "string",
-  :required => "required",
+  :required => "optional",
   :recipes => [ "hadoop::do_hbase_config" ]
 
 attribute "hbase/dns/zookeeper/id",
   :display_name => "Hbase zookeeper hostname id",
-  :description => "FQDN of the zookeeper ",
+  :description => "DNS Service ID of the zookeeper ",
   :type => "string",
-  :required => "required",
+  :required => "optional",
   :recipes => [ "hadoop::do_hbase_config" ]
+
+attribute "hbase/dns/fqdn",
+  :display_name => "Hbase slave hostname",
+  :description => "FQDN of the hbase slave ",
+  :type => "string",
+  :required => "optional",
+  :recipes => [ "hadoop::do_hbase_config" ]
+
+attribute "hbase/dns/id",
+  :display_name => "Hbase slave hostname id",
+  :description => "DNS Service ID of the hbase slave",
+  :type => "string",
+  :required => "optional",
+  :recipes => [ "hadoop::do_hbase_config" ]
+
+attribute "hbase/slave",
+  :display_name => "Hbase Slave Host",
+  :description => "This is a HBase slave host.  Pick yes or no.",
+  :choice=> ['yes','no'],
+  :type => "string",
+  :required => "optional",
+  :recipes => [ "hadoop::do_hbase_init" ]
 
 attribute "hbase/install",
   :display_name => "Install hbase",

@@ -14,4 +14,5 @@ define :hadoop_hosts, :file=>nil, :hosts => [] do
     end
  
   end
+  action :restart_hadoop
 end

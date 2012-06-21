@@ -30,7 +30,7 @@ recipe "hadoop::do_restart_hbase", "Restart Hbase"
 attribute "hadoop/node/type",
   :display_name => "Hadoop node type",
   :description => "Hadoop node type",
-  :choice => ['namenode','datanode'],
+  :choice => ['namenode','datanode','tasktracker', 'jobtracker'],
   :default=>'namenode',
   :type => "string",
   :recipes => [ "hadoop::do_hadoop_init" ]
@@ -42,14 +42,8 @@ attribute "hadoop/dns/namenode/fqdn",
   :required => "required",
   :recipes => [ "hadoop::do_hadoop_config" ]
 
-attribute "hadoop/dns/fqdn",
-  :display_name => "Hadoop Host name ",
-  :description => "FQDN of the NameNode",
-  :type => "string",
-  :required => "required",
-  :recipes => [ "hadoop::do_hadoop_config" ]
 
-attribute "hadoop/dns/id",
+attribute "hadoop/dns/namenode/id",
   :display_name => "Hadoop Host Id ",
   :description => "FQDN of the Host",
   :type => "string",
@@ -89,20 +83,6 @@ attribute "hbase/dns/zookeeper/fqdn",
 attribute "hbase/dns/zookeeper/id",
   :display_name => "Hbase zookeeper hostname id",
   :description => "DNS Service ID of the zookeeper ",
-  :type => "string",
-  :required => "optional",
-  :recipes => [ "hadoop::do_hbase_config" ]
-
-attribute "hbase/dns/fqdn",
-  :display_name => "Hbase slave hostname",
-  :description => "FQDN of the hbase slave ",
-  :type => "string",
-  :required => "optional",
-  :recipes => [ "hadoop::do_hbase_config" ]
-
-attribute "hbase/dns/id",
-  :display_name => "Hbase slave hostname id",
-  :description => "DNS Service ID of the hbase slave",
   :type => "string",
   :required => "optional",
   :recipes => [ "hadoop::do_hbase_config" ]

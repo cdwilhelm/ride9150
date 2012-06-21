@@ -1,211 +1,208 @@
 {
+  "providing": {
+  },
+  "version": "0.0.1",
+  "description": "Install and Configure hadoop and hbase.",
+  "maintainer_email": "curt@rightscale.com",
+  "maintainer": "RightScale",
   "recipes": {
-    "hadoop::do_restart_hbase": "Restart Hbase",
-    "hadoop::do_hadoop_update_masters": "Update masters file with all namenode hostnames.",
-    "hadoop::do_hadoop_config": "Configure hadoop",
     "hadoop::do_start_hbase": "Stop Hbase",
-    "hadoop::install_hadoop": "Install hadoop",
-    "hadoop::install_hbase": "Install hbase",
-    "hadoop::do_hadoop_init": "Creates new block device and formats the node",
+    "hadoop::do_restart_hadoop": "Restart Hadoop",
     "hadoop::do_hbase_init": "Init and start hbase",
     "hadoop::do_stop_hadoop": "Stop Hadoop",
-    "hadoop::do_hbase_config": "Configure hbase",
     "hadoop::do_start_hadoop": "Start Hadoop",
+    "hadoop::install_hbase": "Install hbase",
     "hadoop::do_delete_volumes_and_terminate_server": "Deletes any currently attached volumes from the instance and then terminates the machine.",
-    "hadoop::do_restart_hadoop": "Restart Hadoop"
+    "hadoop::do_hadoop_init": "Creates new block device and formats the node",
+    "hadoop::do_hadoop_config": "Configure hadoop",
+    "hadoop::do_restart_hbase": "Restart Hbase",
+    "hadoop::do_hadoop_update_masters": "Update masters file with all namenode hostnames.",
+    "hadoop::install_hadoop": "Install hadoop",
+    "hadoop::do_hbase_config": "Configure hbase"
   },
-  "description": "Install and Configure hadoop and hbase.",
-  "version": "0.0.1",
+  "replacing": {
+  },
+  "suggestions": {
+  },
   "attributes": {
-    "hadoop/node/type": {
-      "description": "Hadoop node type",
-      "recipes": [
-        "hadoop::do_hadoop_init"
+    "hbase/dns/zookeeper/fqdn": {
+      "display_name": "Hbase zookeeper hostname",
+      "description": "FQDN of the zookeeper ",
+      "choice": [
+
       ],
+      "recipes": [
+        "hadoop::do_hbase_config"
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional"
+    },
+    "hadoop/dns/fqdn": {
+      "display_name": "Hadoop Host name ",
+      "description": "FQDN of the NameNode",
+      "choice": [
+
+      ],
+      "recipes": [
+        "hadoop::do_hadoop_config"
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "required"
+    },
+    "hadoop/node/type": {
+      "display_name": "Hadoop node type",
+      "description": "Hadoop node type",
       "choice": [
         "namenode",
         "datanode"
       ],
-      "required": "optional",
-      "default": "namenode",
+      "recipes": [
+        "hadoop::do_hadoop_init"
+      ],
       "calculated": false,
-      "display_name": "Hadoop node type",
-      "type": "string"
+      "default": "namenode",
+      "type": "string",
+      "required": "optional"
     },
     "hbase/slave": {
+      "display_name": "Hbase Slave Host",
       "description": "This is a HBase slave host.  Pick yes or no.",
-      "recipes": [
-        "hadoop::do_hbase_init"
-      ],
       "choice": [
         "yes",
         "no"
       ],
-      "required": "optional",
-      "calculated": false,
-      "display_name": "Hbase Slave Host",
-      "type": "string"
-    },
-    "hbase/dns/id": {
-      "description": "DNS Service ID of the hbase slave",
       "recipes": [
-        "hadoop::do_hbase_config"
+        "hadoop::do_hbase_init"
       ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional"
+    },
+    "hbase/dns/zookeeper/id": {
+      "display_name": "Hbase zookeeper hostname id",
+      "description": "DNS Service ID of the zookeeper ",
       "choice": [
 
       ],
-      "required": "optional",
+      "recipes": [
+        "hadoop::do_hbase_config"
+      ],
       "calculated": false,
-      "display_name": "Hbase slave hostname id",
-      "type": "string"
+      "type": "string",
+      "required": "optional"
     },
-    "hadoop/dns/namenode/fqdn": {
-      "description": "FQDN of the NameNode",
+    "hbase/dns/id": {
+      "display_name": "Hbase slave hostname id",
+      "description": "DNS Service ID of the hbase slave",
+      "choice": [
+
+      ],
+      "recipes": [
+        "hadoop::do_hbase_config"
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional"
+    },
+    "hadoop/dns/id": {
+      "display_name": "Hadoop Host Id ",
+      "description": "FQDN of the Host",
+      "choice": [
+
+      ],
       "recipes": [
         "hadoop::do_hadoop_config"
       ],
+      "calculated": false,
+      "type": "string",
+      "required": "required"
+    },
+    "hbase/dns/fqdn": {
+      "display_name": "Hbase slave hostname",
+      "description": "FQDN of the hbase slave ",
       "choice": [
 
       ],
-      "required": "required",
-      "calculated": false,
-      "display_name": "Hadoop namenode hostname ",
-      "type": "string"
-    },
-    "hbase/dns/zookeeper/id": {
-      "description": "DNS Service ID of the zookeeper ",
       "recipes": [
         "hadoop::do_hbase_config"
       ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional"
+    },
+    "hadoop/dns/namenode/fqdn": {
+      "display_name": "Hadoop namenode hostname ",
+      "description": "FQDN of the NameNode",
       "choice": [
 
       ],
-      "required": "optional",
+      "recipes": [
+        "hadoop::do_hadoop_config"
+      ],
       "calculated": false,
-      "display_name": "Hbase zookeeper hostname id",
-      "type": "string"
+      "type": "string",
+      "required": "required"
     },
     "hbase/install": {
-      "choose": [
+      "display_name": "Install hbase",
+      "description": "Install hbase on this host.",
+      "choice": [
         "true",
         "false"
       ],
-      "description": "Install hbase on this host.",
       "recipes": [
         "hadoop::install_hbase"
       ],
-      "choice": [
-
-      ],
-      "required": "optional",
-      "default": "true",
       "calculated": false,
-      "display_name": "Install hbase",
-      "type": "string"
+      "default": "true",
+      "type": "string",
+      "required": "optional"
     },
     "hadoop/terminate_safety": {
+      "display_name": "Terminate Safety",
       "description": "Prevents the accidental running of the db::do_teminate_server recipe. This recipe will only run if this input variable is overridden and set to \"off\".",
-      "recipes": [
-        "hadoop::do_delete_volumes_and_terminate_server"
-      ],
       "choice": [
         "Override the dropdown and set to \"off\" to really run this recipe"
       ],
-      "required": "optional",
-      "default": "Override the dropdown and set to \"off\" to really run this recipe",
-      "calculated": false,
-      "display_name": "Terminate Safety",
-      "type": "string"
-    },
-    "hbase/dns/zookeeper/fqdn": {
-      "description": "FQDN of the zookeeper ",
       "recipes": [
-        "hadoop::do_hbase_config"
+        "hadoop::do_delete_volumes_and_terminate_server"
       ],
+      "calculated": false,
+      "default": "Override the dropdown and set to \"off\" to really run this recipe",
+      "type": "string",
+      "required": "optional"
+    },
+    "hadoop/backup/lineage": {
+      "display_name": "Hadoop Backup Lineage",
+      "description": "The prefix that will be used to name/locate the backup of hbase. Note: For servers running on Rackspace, this value also indicates the Cloud Files container to use for storing primary backups. If a Cloud Files container with this name does not already exist, the setup process creates one.",
       "choice": [
 
       ],
-      "required": "optional",
-      "calculated": false,
-      "display_name": "Hbase zookeeper hostname",
-      "type": "string"
-    },
-    "hadoop/backup/lineage": {
-      "description": "The prefix that will be used to name/locate the backup of hbase. Note: For servers running on Rackspace, this value also indicates the Cloud Files container to use for storing primary backups. If a Cloud Files container with this name does not already exist, the setup process creates one.",
       "recipes": [
         "hadoop::do_hadoop_init"
       ],
-      "choice": [
-
-      ],
-      "required": "required",
       "calculated": false,
-      "display_name": "Hadoop Backup Lineage",
-      "type": "string"
-    },
-    "hadoop/dns/id": {
-      "description": "FQDN of the Host",
-      "recipes": [
-        "hadoop::do_hadoop_config"
-      ],
-      "choice": [
-
-      ],
-      "required": "required",
-      "calculated": false,
-      "display_name": "Hadoop Host Id ",
-      "type": "string"
-    },
-    "hadoop/dns/fqdn": {
-      "description": "FQDN of the NameNode",
-      "recipes": [
-        "hadoop::do_hadoop_config"
-      ],
-      "choice": [
-
-      ],
-      "required": "required",
-      "calculated": false,
-      "display_name": "Hadoop Host name ",
-      "type": "string"
-    },
-    "hbase/dns/fqdn": {
-      "description": "FQDN of the hbase slave ",
-      "recipes": [
-        "hadoop::do_hbase_config"
-      ],
-      "choice": [
-
-      ],
-      "required": "optional",
-      "calculated": false,
-      "display_name": "Hbase slave hostname",
-      "type": "string"
+      "type": "string",
+      "required": "required"
     }
   },
-  "recommendations": {
+  "groupings": {
   },
+  "long_description": "Description\n===========\nInstalls Apache hadoop and hbase\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
   "platforms": {
-  },
-  "dependencies": {
-    "sys_dns": ">= 0.0.0",
-    "rs_utils": ">= 0.0.0",
-    "block_device": ">= 0.0.0",
-    "sys_firewall": ">= 0.0.0"
   },
   "license": "All rights reserved",
   "name": "hadoop",
-  "maintainer_email": "curt@rightscale.com",
-  "long_description": "Description\n===========\nInstalls Apache hadoop and hbase\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "recommendations": {
+  },
   "conflicting": {
   },
-  "suggestions": {
-  },
-  "maintainer": "RightScale",
-  "groupings": {
-  },
-  "replacing": {
-  },
-  "providing": {
+  "dependencies": {
+    "sys_dns": ">= 0.0.0",
+    "sys_firewall": ">= 0.0.0",
+    "rs_utils": ">= 0.0.0",
+    "block_device": ">= 0.0.0"
   }
 }

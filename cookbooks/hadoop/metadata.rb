@@ -33,8 +33,14 @@ attribute "hadoop/node/type",
   :choice => ['namenode','datanode'],
   :default=>'namenode',
   :type => "string",
-  :required => "required",
   :recipes => [ "hadoop::do_hadoop_init" ]
+
+attribute "hadoop/dns/namenode/fqdn",
+  :display_name => "Hadoop namenode hostname ",
+  :description => "FQDN of the NameNode",
+  :type => "string",
+  :required => "required",
+  :recipes => [ "hadoop::do_hadoop_config" ]
 
 attribute "hadoop/dns/fqdn",
   :display_name => "Hadoop Host name ",
@@ -107,7 +113,7 @@ attribute "hbase/install",
   :display_name => "Install hbase",
   :description => "Install hbase on this host.",
   :default=>"true",
-  :choose=>["true", "false"],
+  :choice =>["true", "false"],
   :type => "string",
   :required => "optional",
   :recipes => [ "hadoop::install_hbase" ]

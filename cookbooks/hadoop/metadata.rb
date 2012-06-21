@@ -56,6 +56,12 @@ attribute "hadoop/dns/id",
   :required => "required",
   :recipes => [ "hadoop::do_hadoop_config" ]
 
+attribute "hadoop/dfs/replication",
+  :display_name => "Hadoop namenode dfs.replicaton property ",
+  :description => "Hadoop namenode dfs.replicaton property",
+  :type => "string",
+  :required => "optional",
+  :recipes => [ "hadoop::do_hadoop_config" ]
 # == Backup/Restore
 #
 attribute "hadoop/backup/lineage",

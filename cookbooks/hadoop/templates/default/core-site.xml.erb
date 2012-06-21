@@ -9,4 +9,10 @@
     <name>fs.default.name</name>
     <value>hdfs://<%= node[:hadoop][:dns][:namenode][:fqdn]  %>/</value>
   </property>
+  <% if node[:hadoop][:node][:type]=='namenode'%>
+    <property>
+    <name>dfs.replication</name>
+    <value><%= node[:hadoop][:dfs][:replication]%></value>
+  </property>
+  <% end %>
 </configuration>

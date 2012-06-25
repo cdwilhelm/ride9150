@@ -26,6 +26,8 @@ recipe "hadoop::do_stop_hadoop", "Stop Hadoop"
 recipe "hadoop::do_start_hbase", "Stop Hbase"
 recipe "hadoop::do_restart_hadoop", "Restart Hadoop"
 recipe "hadoop::do_restart_hbase", "Restart Hbase"
+recipe "hadoop::do_attach_request", "Attach request"
+recipe "hadoop::do_handle_attache", "Handle Attach"
 
 attribute "hadoop/node/type",
   :display_name => "Hadoop node type",

@@ -61,8 +61,33 @@ action :restart_hbase do
   action :start_hbase
 end
 
-action :update_slaves do
+action :attach do
+
+
+  log "attach: ID:#{new_resource.backend_id} / IP:#{new_resource.backend_ip} "
+     # :backend_name => new_resource.backend_id,
+     # :backend_ip => new_resource.backend_ip,
+     # :backend_port => new_resource.backend_port,
+
+ 
+
+end # action :attach do
+
+action :attach_request do
+
   
-  
-  
-end
+
+  log "  Attach request for #{new_resource.backend_id} / #{new_resource.backend_ip}"
+
+  # Run remote_recipe for each datanode 
+  remote_recipe "Attach me as a slave" do
+    recipe "hadoop::handle_attach"
+    attributes :remote_recipe => {
+      :backend_ip => new_resource.backend_ip,
+      :backend_id => new_resource.backend_id,
+      :backend_port => new_resource.backend_port,
+    }
+    recipients_tags "hadoop:node_type=datanode"
+  end
+
+end # action :attach_request do

@@ -8,3 +8,6 @@ set[:env][:java_home]='/usr/java/default'
 
 default[:hadoop][:name_dir]='/mnt/storage/logs'
 default[:hadoop][:data_dir]='/mnt/storage/data'
+
+# This is a set instead of set_unless to support start/stop when the IP changes.
+set[:hadoop][:ip] = node[:cloud][:private_ips][0]

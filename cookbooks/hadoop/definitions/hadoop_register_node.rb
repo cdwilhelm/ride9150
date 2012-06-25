@@ -18,9 +18,6 @@ define :hadoop_register_node do
     address private_ip
     action :set_private
   end
-  
- 
-  right_link_tag "hadoop:node_type=#{node[:hadoop][:node][:type]}"
 
 
 end

@@ -18,6 +18,7 @@ block_device NICKNAME do
   not_if "test -e #{node.block_device.devices.device1.mount_point}"
 end
 
+ right_link_tag "hadoop:node_type=#{node[:hadoop][:node][:type]}"
 if node[:hadoop][:node][:type]=='namenode'
   hadoop_register_node
   log "  Format node"

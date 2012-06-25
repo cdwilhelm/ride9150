@@ -5,23 +5,26 @@
 # RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
 # if applicable, other agreements such as a RightScale Master Subscription Agreement.
 
-rightscale_marker :begin
+rs_utils_marker :begin
 
 class Chef::Recipe
-  include RightScale::App::Helper
+  include RightScale::Hadoop::Helper
 end
 
 
-  log "  Adding tag to answer for vhost load balancing - "
+log "  Adding tag to answer for vhost load balancing - "
   
-
-  log "  Sending remote attach request..."
+get_hosts('datanode').each do |host|
+    
+  hadoop host do
+    #log "  Sending remote attach request..."
 
     backend_id node[:rightscale][:instance_uuid]
-    backend_ip node[:app][:ip]
-    backend_port node[:app][:port].to_i
+    backend_ip node[:hadoop][:ip]
+    #backend_port node[:app][:port].to_i
     action :attach_request
+  end
+end
 
 
-
-rightscale_marker :end
+  rs_utils_marker :end

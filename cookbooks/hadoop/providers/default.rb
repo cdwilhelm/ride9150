@@ -77,7 +77,7 @@ action :attach_request do
 
   
 
-  log "  Attach request for #{new_resource.backend_id} / #{new_resource.backend_ip}"
+  log "Attach request for #{new_resource.backend_id} / #{new_resource.backend_ip}"
 
   # Run remote_recipe for each datanode 
   remote_recipe "Attach me as a slave" do
@@ -85,9 +85,9 @@ action :attach_request do
     attributes :remote_recipe => {
       :backend_ip => new_resource.backend_ip,
       :backend_id => new_resource.backend_id,
-      :backend_port => new_resource.backend_port,
+     
     }
-    recipients_tags "hadoop:node_type=datanode"
+    recipients_tags "hadoop:node_type=namenode"
   end
 
 end # action :attach_request do

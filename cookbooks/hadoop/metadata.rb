@@ -31,14 +31,14 @@ attribute "hadoop/node/type",
   :choice => ['namenode','datanode','tasktracker', 'jobtracker'],
   :default=>'namenode',
   :type => "string",
-  :recipes => [ "hadoop::do_hadoop_init","hadoop::do_hadoop_config" ]
+  :recipes => [ "hadoop::do_init","hadoop::do_config" ]
 
 attribute "hadoop/dns/namenode/fqdn",
   :display_name => "Hadoop namenode hostname ",
   :description => "FQDN of the NameNode",
   :type => "string",
   :required => "required",
-  :recipes => [ "hadoop::do_hadoop_init","hadoop::do_hadoop_config" ]
+  :recipes => [ "hadoop::do_init","hadoop::do_config" ]
 
 
 attribute "hadoop/dns/namenode/id",
@@ -46,21 +46,21 @@ attribute "hadoop/dns/namenode/id",
   :description => "DNS Service ID for namenode",
   :type => "string",
   :required => "optional",
-  :recipes => [ "hadoop::do_hadoop_init" ]
+  :recipes => [ "hadoop::do_init" ]
 
 attribute "hadoop/dfs/replication",
   :display_name => "Hadoop namenode dfs.replicaton property ",
   :description => "Hadoop namenode dfs.replicaton property",
   :type => "string",
   :required => "optional",
-  :recipes => [ "hadoop::do_hadoop_config" ]
+  :recipes => [ "hadoop::do_config" ]
 # == Backup/Restore
 #
 attribute "hadoop/backup/lineage",
   :display_name => "Hadoop Backup Lineage",
   :description => "The prefix that will be used to name/locate the backup of hbase. Note: For servers running on Rackspace, this value also indicates the Cloud Files container to use for storing primary backups. If a Cloud Files container with this name does not already exist, the setup process creates one.",
   :required => "required",
-  :recipes => ["hadoop::do_hadoop_init"]
+  :recipes => ["hadoop::do_init"]
 
 attribute "hadoop/terminate_safety",
   :display_name => "Terminate Safety",
@@ -76,7 +76,7 @@ attribute "hbase/dns/zookeeper/fqdn",
   :description => "FQDN of the zookeeper ",
   :type => "string",
   :required => "optional",
-  :recipes => [ "hadoop::do_hbase_config","hadoop::do_hadoop_init" ]
+  :recipes => [  "hadoop::do_init","hadoop::do_config" ]
 
 attribute "hbase/dns/zookeeper/id",
   :display_name => "Hbase zookeeper hostname id",

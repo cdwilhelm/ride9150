@@ -17,6 +17,8 @@ create_hosts "Add all datanodes" do
   hosts  hosts
   file 'slaves'
   restart  false
+  #only add slaves to namenode hosts
+  only_if node[:hadoop][:node][:type]=='namenode' 
 end
 
 hosts = get_hosts('namenodes')
@@ -24,6 +26,8 @@ create_hosts "Add all namenodes" do
   hosts  hosts
   file 'masters'
   restart  true
+  # only add masters to datanode hosts
+  only_if node[:hadoop][:node][:type]=='datanode'
 end
 
 

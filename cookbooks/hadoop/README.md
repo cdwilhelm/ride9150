@@ -1,6 +1,6 @@
 Description
 ===========
-Installs Apache hadoop and hbase
+Installs Apache Aadoop 
 
 Requirements
 ============

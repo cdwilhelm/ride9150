@@ -13,9 +13,16 @@ end
 
 hosts = get_hosts('datanode')
 
-create_hosts "Add all slaves" do
+create_hosts "Add all datanodes" do
   hosts  hosts
   file 'slaves'
+  restart  false
+end
+
+hosts = get_hosts('namenodes')
+create_hosts "Add all namenodes" do
+  hosts  hosts
+  file 'masters'
   restart  true
 end
 

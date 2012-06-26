@@ -9,8 +9,8 @@ class Chef::Recipe
   include RightScale::Hadoop::Helper
 end
 
-# Stop hadoop and hbase
-action :stop_hadoop do
+# Stop hadoop
+action :stop do
   log "  Running stop sequence"
   execute "hadoop" do
     command "#{node[:hadoop][:install_dir]}/bin/stop-all.sh"
@@ -19,8 +19,8 @@ action :stop_hadoop do
 
 end
 
-# Start hadoop and hbase
-action :start_hadoop do
+# Start hadoop
+action :start do
   log "  Running start sequence"
   execute "hadoop" do
     command "#{node[:hadoop][:install_dir]}/bin/start-all.sh"
@@ -28,12 +28,12 @@ action :start_hadoop do
   end
 end
 
-# Restart hadoop and hbase
-action :restart_hadoop do
+# Restart hadoop
+action :restart do
   log "  Running restart sequence"
-  action :stop_hadoop
-  sleep 5
-  action :start_hadoop
+  action :stop
+  sleep 10
+  action :start
 end
 
 # Stop  hbase
@@ -70,8 +70,15 @@ action :attach do
   add_host new_resource.backend_ip do
     file 'slaves'
     restart true
-  end
-end 
+    only_if node[:hadoop][:node][:type]=='datanode'
+  end 
+  
+  add_host new_resource.backend_ip do
+    file 'master'
+    restart true
+    only_if node[:hadoop][:node][:type]=='namenode'
+  end 
+end
 
 action :attach_request do
   log "Attach request for #{new_resource.backend_id} / #{new_resource.backend_ip}"
@@ -79,6 +86,36 @@ action :attach_request do
   # Run remote_recipe for each datanode 
   remote_recipe "Attach me as a slave" do
     recipe "hadoop::handle_attach"
+    attributes :remote_recipe => {
+      :backend_ip => new_resource.backend_ip,
+      :backend_id => new_resource.backend_id,
+    }
+    recipients_tags "hadoop:node_type=namenode"
+  end
+
+end # action :attach_request do
+
+action :detach do
+  log "Detach: ID:#{new_resource.backend_id} / IP:#{new_resource.backend_ip} "
+  remove_host new_resource.backend_ip do
+    file 'slaves'
+    restart true
+    only_if node[:hadoop][:node][:type]=='datanode'
+  end 
+  
+  remove_host new_resource.backend_ip do
+    file 'master'
+    restart true
+    only_if node[:hadoop][:node][:type]=='namenode'
+  end 
+end
+
+action :detach_request do
+  log "Detach request for #{new_resource.backend_id} / #{new_resource.backend_ip}"
+
+  # Run remote_recipe for each datanode 
+  remote_recipe "Attach me as a slave" do
+    recipe "hadoop::handle_detach"
     attributes :remote_recipe => {
       :backend_ip => new_resource.backend_ip,
       :backend_id => new_resource.backend_id,

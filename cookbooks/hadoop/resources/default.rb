@@ -11,14 +11,17 @@ attribute :backend_id, :kind_of => String, :default => ""
 attribute :backend_ip, :kind_of => String, :default => ""
 
 
-add_action :start_hadoop
-add_action :stop_hadoop
-add_action :restart_hadoop
+add_action :start
+add_action :stop
+add_action :restart
 add_action :start_hbase
 add_action :stop_hbase 
 add_action :restart_hbase
 add_action :attach
 add_action :attach_request
+add_action :detach
+add_action :detach_request
+
 
 actions @action_list
 

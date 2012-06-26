@@ -1,7 +1,7 @@
 maintainer       "RightScale"
 maintainer_email "curt@rightscale.com"
 license          "All rights reserved"
-description      "Install and Configure hadoop and hbase."
+description      "Install and Configure Apache Hadoop"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.0.1"
 
@@ -11,24 +11,19 @@ depends "block_device"
 depends "sys_firewall"
 depends "sys_dns"
 
-recipe 'hadoop::install_hadoop', 'Install hadoop'
-recipe 'hadoop::do_hadoop_config', 'Configure hadoop'
-recipe 'hadoop::do_hadoop_init', 'Creates new block device and formats the node'
-recipe 'hadoop::do_hadoop_update_masters', 'Update masters file with all namenode hostnames.'
-recipe 'hadoop::install_hbase', 'Install hbase'
-recipe 'hadoop::do_hbase_config', 'Configure hbase'
-recipe 'hadoop::do_hbase_init', 'Init and start hbase'
+recipe 'hadoop::install', 'Install hadoop'
+recipe 'hadoop::do_config', 'Configure hadoop'
+recipe 'hadoop::do_init', 'Creates new block device and formats the node'
 recipe "hadoop::do_delete_volumes_and_terminate_server", "Deletes any currently attached volumes from the instance and then terminates the machine."
-recipe "hadoop::do_start_hadoop", "Start Hadoop"
-recipe "hadoop::do_start_hbase", "Start Hbase"
-recipe "hadoop::do_stop_hadoop", "Stop Hadoop"
-recipe "hadoop::do_stop_hadoop", "Stop Hadoop"
-recipe "hadoop::do_start_hbase", "Stop Hbase"
-recipe "hadoop::do_restart_hadoop", "Restart Hadoop"
-recipe "hadoop::do_restart_hbase", "Restart Hbase"
+recipe "hadoop::do_start", "Start Hadoop"
+recipe "hadoop::do_stop", "Stop Hadoop"
+recipe "hadoop::do_restart", "Restart Hadoop"
 recipe "hadoop::do_attach_request", "Attach request"
 recipe "hadoop::handle_attach", "Handle Attach"
-recipe "hadoop::do_attach_all", "Handle Attach"
+recipe "hadoop::do_attach_all", "Handle Attach All"
+recipe "hadoop::do_detach_request", "Detach request"
+recipe "hadoop::handle_detach", "Handle Detach"
+recipe "hadoop::do_detach_all", "Handle Detach All"
 
 attribute "hadoop/node/type",
   :display_name => "Hadoop node type",

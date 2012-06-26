@@ -11,6 +11,13 @@ class Chef::Recipe
   include RightScale::Hadoop::Helper
 end
 
+hosts = get_hosts('datanode')
+
+create_hosts "Add all slaves" do
+  hosts  hosts
+  file 'slaves'
+  restart  true
+end
 
 
 rs_utils_marker :end

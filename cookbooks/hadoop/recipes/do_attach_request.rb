@@ -11,20 +11,17 @@ class Chef::Recipe
   include RightScale::Hadoop::Helper
 end
 
-
-log "  Adding tag to answer for vhost load balancing - "
-  
-get_hosts('datanode').each do |host|
+#get_hosts('datanode').each do |host|
     
-  hadoop host do
-    #log "  Sending remote attach request..."
+hadoop "Attach Request for #{node[:hadoop][:ip]}" do
+  #log "  Sending remote attach request..."
 
-    backend_id node[:rightscale][:instance_uuid]
-    backend_ip node[:hadoop][:ip]
-    #backend_port node[:app][:port].to_i
-    action :attach_request
-  end
+  backend_id node[:rightscale][:instance_uuid]
+  backend_ip node[:hadoop][:ip]
+  #backend_port node[:app][:port].to_i
+  action :attach_request
 end
+#end
 
 
-  rs_utils_marker :end
+rs_utils_marker :end

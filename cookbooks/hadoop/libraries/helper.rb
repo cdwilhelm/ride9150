@@ -1,39 +1,26 @@
 module RightScale
   module Hadoop
     module Helper
-      
+            
       def get_hosts(type) 
-        hadoop_servers = Hash.new
+        hadoop_servers = Set.new
         
         r=  server_collection "hosts" do
           tags "hadoop:node_type=datanode"
           action :nothing
         end
-        
         r.run_action(:load)
-        log node[:server_collection]['hosts'].inspect
 
         node[:server_collection]['hosts'].to_hash.values.each do |tags|
-          uuid = RightScale::Utils::Helper.get_tag_value('server:uuid', tags)
+         # uuid = RightScale::Utils::Helper.get_tag_value('server:uuid', tags)
           ip = RightScale::Utils::Helper.get_tag_value('server:private_ip_0', tags)
-        
-          #log "uuid: #{uuid} | IP: #{ip}"
-          hadoop_servers[uuid] = {}
-          hadoop_servers[uuid][:ip] = ip
-        #  hadoop_servers[uuid][:backend_port] = port.to_i
+          hadoop_servers.add?(ip)
         end
-        
-       # log hadoop_servers.inspect
+        log "hosts #{hadoop_servers.inspect}"
         hadoop_servers
       end
-      def update_slaves(hosts)
-        
-        slaves = File.new("#{node[:hadoop][:install_dir]}/conf/slaves",w)
-        hosts.each do |h|
-          slaves.puts(h)
-        end
-        slaves.close
-      end
+      
+    
     end
   end
 end

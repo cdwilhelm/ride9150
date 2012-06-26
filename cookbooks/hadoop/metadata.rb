@@ -36,22 +36,22 @@ attribute "hadoop/node/type",
   :choice => ['namenode','datanode','tasktracker', 'jobtracker'],
   :default=>'namenode',
   :type => "string",
-  :recipes => [ "hadoop::do_hadoop_init" ]
+  :recipes => [ "hadoop::do_hadoop_init","hadoop::do_hadoop_config" ]
 
 attribute "hadoop/dns/namenode/fqdn",
   :display_name => "Hadoop namenode hostname ",
   :description => "FQDN of the NameNode",
   :type => "string",
   :required => "required",
-  :recipes => [ "hadoop::do_hadoop_config" ]
+  :recipes => [ "hadoop::do_hadoop_init","hadoop::do_hadoop_config" ]
 
 
 attribute "hadoop/dns/namenode/id",
   :display_name => "Hadoop Host Id ",
-  :description => "FQDN of the Host",
+  :description => "DNS Service ID for namenode",
   :type => "string",
-  :required => "required",
-  :recipes => [ "hadoop::do_hadoop_config" ]
+  :required => "optional",
+  :recipes => [ "hadoop::do_hadoop_init" ]
 
 attribute "hadoop/dfs/replication",
   :display_name => "Hadoop namenode dfs.replicaton property ",
@@ -81,14 +81,14 @@ attribute "hbase/dns/zookeeper/fqdn",
   :description => "FQDN of the zookeeper ",
   :type => "string",
   :required => "optional",
-  :recipes => [ "hadoop::do_hbase_config" ]
+  :recipes => [ "hadoop::do_hbase_config","hadoop::do_hadoop_init" ]
 
 attribute "hbase/dns/zookeeper/id",
   :display_name => "Hbase zookeeper hostname id",
   :description => "DNS Service ID of the zookeeper ",
   :type => "string",
   :required => "optional",
-  :recipes => [ "hadoop::do_hbase_config" ]
+  :recipes => [ "hadoop::do_hbase_config" ,"hadoop::do_hadoop_init"]
 
 attribute "hbase/slave",
   :display_name => "Hbase Slave Host",

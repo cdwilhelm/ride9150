@@ -26,6 +26,14 @@ module RightScale
        # log hadoop_servers.inspect
         hadoop_servers
       end
+      def update_slaves(hosts)
+        
+        slaves = File.new("#{node[:hadoop][:install_dir]}/conf/slaves",w)
+        hosts.each do |h|
+          slaves.puts(h)
+        end
+        slaves.close
+      end
     end
   end
 end

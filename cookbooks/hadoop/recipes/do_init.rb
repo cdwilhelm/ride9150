@@ -1,22 +1,22 @@
 rs_utils_marker :begin
 
-class Chef::Recipe
-  include RightScale::BlockDeviceHelper
-end
+#class Chef::Recipe
+#  include RightScale::BlockDeviceHelper
+#end
 
-class Chef::Resource::BlockDevice
-  include RightScale::BlockDeviceHelper
-end
-NICKNAME = get_device_or_default(node, :device1, :nickname)
+#class Chef::Resource::BlockDevice
+#  include RightScale::BlockDeviceHelper
+#end
+#NICKNAME = get_device_or_default(node, :device1, :nickname)
 
-include_recipe 'block_device::default'
+#include_recipe 'block_device::default'
 
-log "  Creating block device..."
-block_device NICKNAME do
-  lineage node[:hadoop][:backup][:lineage]
-  action :create
-  not_if "test -e #{node.block_device.devices.device1.mount_point}"
-end
+#log "  Creating block device..."
+#block_device NICKNAME do
+#  lineage node[:hadoop][:backup][:lineage]
+#  action :create
+#  not_if "test -e #{node.block_device.devices.device1.mount_point}"
+#end
 
  right_link_tag "hadoop:node_type=#{node[:hadoop][:node][:type]}"
 if node[:hadoop][:node][:type]=='namenode'

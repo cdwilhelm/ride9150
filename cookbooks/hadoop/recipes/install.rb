@@ -6,7 +6,7 @@
     cookbook 'hadoop'
   end
   
-   bash "install_hadoop" do
+   bash "install hadoop" do
     flags "-ex"
     code <<-EOH
       tar xzf /tmp/hadoop-#{node[:hadoop][:version]}-bin.tar.gz -C /home/

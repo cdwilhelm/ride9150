@@ -6,8 +6,8 @@ define :add_host,:restart=>false, :file=>'slaves' do
   
   if params[:restart]
     log "Start new nodes"
-    hadoop "Start hbase" do
-      action :start_hadoop
+    hadoop "Start hadoop" do
+      action :start
     end
   end
   

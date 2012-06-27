@@ -13,7 +13,7 @@ define :create_hosts ,:restart=>false, :hosts=>Set.new, :file=>'slaves' do
   if !params[:hosts].empty? and params[:restart]
     log "Start the nodes"
     hadoop "Start hadoop" do
-      action :start_hadoop
+      action :start
     end
   end
 end

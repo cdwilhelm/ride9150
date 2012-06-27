@@ -1,3 +1,3 @@
 hadoop "stop hadoop" do
-action :stop_hadoop
+action :stop
 end

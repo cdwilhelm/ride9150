@@ -54,13 +54,6 @@ attribute "hadoop/dfs/replication",
   :type => "string",
   :required => "optional",
   :recipes => [ "hadoop::do_config" ]
-# == Backup/Restore
-#
-attribute "hadoop/backup/lineage",
-  :display_name => "Hadoop Backup Lineage",
-  :description => "The prefix that will be used to name/locate the backup of hbase. Note: For servers running on Rackspace, this value also indicates the Cloud Files container to use for storing primary backups. If a Cloud Files container with this name does not already exist, the setup process creates one.",
-  :required => "required",
-  :recipes => ["hadoop::do_init"]
 
 attribute "hadoop/terminate_safety",
   :display_name => "Terminate Safety",
@@ -83,7 +76,7 @@ attribute "hbase/dns/zookeeper/id",
   :description => "DNS Service ID of the zookeeper ",
   :type => "string",
   :required => "optional",
-  :recipes => [ "hadoop::do_hbase_config" ,"hadoop::do_hadoop_init"]
+  :recipes => [ "hadoop::do_hbase_config" ]
 
 attribute "hbase/slave",
   :display_name => "Hbase Slave Host",

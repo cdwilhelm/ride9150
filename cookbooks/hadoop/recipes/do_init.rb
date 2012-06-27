@@ -31,7 +31,7 @@ end
 
 
 hadoop "start hadoop" do
-  action :start_hadoop
+  action :start
 end
 
 

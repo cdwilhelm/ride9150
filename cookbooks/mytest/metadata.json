@@ -1,0 +1,33 @@
+{
+  "recipes": {
+    "mytest::do_attach_lb": "attach lb",
+    "mytest::default": "default"
+  },
+  "attributes": {
+  },
+  "name": "mytest",
+  "replacing": {
+  },
+  "conflicting": {
+  },
+  "maintainer": "YOUR_COMPANY_NAME",
+  "providing": {
+  },
+  "maintainer_email": "YOUR_EMAIL",
+  "platforms": {
+  },
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "suggestions": {
+  },
+  "groupings": {
+  },
+  "version": "0.0.1",
+  "recommendations": {
+  },
+  "dependencies": {
+    "lb": ">= 0.0.0",
+    "web_apache": ">= 0.0.0"
+  },
+  "license": "All rights reserved",
+  "description": "Installs/Configures mytest"
+}

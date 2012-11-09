@@ -12,6 +12,7 @@ mytest "vhost" do
 end
 
 directory "/home/webapps/mytest" do
+  recursive true
   action :create
 end
 

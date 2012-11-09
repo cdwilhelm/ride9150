@@ -10,3 +10,11 @@
 mytest "vhost" do
   action :setup_vhost
 end
+
+template "/home/webapps/mytest/healthcheck.html" do
+  source "healthcheck.erb"
+end
+
+template "/home/webapps/app_test/ROOT/healthcheck.html" do
+  source "healthcheck.erb"
+end

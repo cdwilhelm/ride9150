@@ -10,7 +10,7 @@ action :setup_vhost do
   end
 
   # Adds php port to list of ports for webserver to listen on
-  app_add_listen_port php_port
+  #app_add_listen_port php_port
 
   # Configure apache vhost for PHP
   web_app node[:web_apache][:application_name] do

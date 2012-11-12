@@ -16,6 +16,11 @@ directory "#{node[:repo][:default][:destination]}/mytest" do
   action :create
 end
 
+directory "#{node[:web_apache][:application_name]}/ROOT" do
+  recursive true
+  action :create
+end
+
 template "#{node[:repo][:default][:destination]}/mytest/healthcheck.html" do
   source "healthcheck.erb"
 end

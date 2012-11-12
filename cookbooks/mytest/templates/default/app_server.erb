@@ -40,8 +40,8 @@
   RewriteRule ^.*$ /system/maintenance.html [L]
 
   # Setup the logs in the appropriate directory
-  CustomLog <%= node[:apache][:log_dir] %>/access_log combined
-  ErrorLog  <%= node[:apache][:log_dir] %>/error_log
+  CustomLog <%= node[:apache][:log_dir] %>/mytest_access_log combined
+  ErrorLog  <%= node[:apache][:log_dir] %>/mytest_error_log
 
   LogLevel warn
 

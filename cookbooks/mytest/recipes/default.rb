@@ -11,15 +11,16 @@ mytest "vhost" do
   action :setup_vhost
 end
 
-directory "/home/webapps/mytest" do
+directory "#{node[:repo][:default][:destination]}/mytest" do
   recursive true
   action :create
 end
 
-template "/home/webapps/mytest/healthcheck.html" do
+template "#{node[:repo][:default][:destination]}/mytest/healthcheck.html" do
   source "healthcheck.erb"
 end
 
-template "/home/webapps/app_test/ROOT/healthcheck.html" do
+#should already be built.
+template "#{node[:repo][:default][:destination]}/#{node[:web_apache][:application_name]}/ROOT/healthcheck.html" do
   source "healthcheck.erb"
 end

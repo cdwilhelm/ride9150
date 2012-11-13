@@ -7,6 +7,7 @@ version          "0.0.1"
 
 depends 'lb'
 depends "web_apache"
+depends "apache2"
 
-recipe "mytest::default", "default"
+recipe "mytest::default", "Installs my app, config apache"
 recipe "mytest::do_attach_lb", "attach lb"

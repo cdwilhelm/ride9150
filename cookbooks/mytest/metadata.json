@@ -1,33 +1,34 @@
 {
-  "recipes": {
-    "mytest::do_attach_lb": "attach lb",
-    "mytest::default": "default"
-  },
-  "attributes": {
-  },
-  "name": "mytest",
-  "replacing": {
-  },
-  "conflicting": {
-  },
-  "maintainer": "YOUR_COMPANY_NAME",
-  "providing": {
-  },
-  "maintainer_email": "YOUR_EMAIL",
-  "platforms": {
-  },
-  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
-  "suggestions": {
-  },
   "groupings": {
   },
-  "version": "0.0.1",
-  "recommendations": {
+  "providing": {
+  },
+  "suggestions": {
+  },
+  "platforms": {
   },
   "dependencies": {
-    "lb": ">= 0.0.0",
-    "web_apache": ">= 0.0.0"
+    "web_apache": ">= 0.0.0",
+    "apache2": ">= 0.0.0",
+    "lb": ">= 0.0.0"
   },
+  "maintainer": "YOUR_COMPANY_NAME",
+  "description": "Installs/Configures mytest",
   "license": "All rights reserved",
-  "description": "Installs/Configures mytest"
+  "maintainer_email": "YOUR_EMAIL",
+  "attributes": {
+  },
+  "version": "0.0.1",
+  "recipes": {
+    "mytest::default": "Installs my app, config apache",
+    "mytest::do_attach_lb": "attach lb"
+  },
+  "recommendations": {
+  },
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "name": "mytest"
 }

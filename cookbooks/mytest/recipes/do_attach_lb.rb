@@ -1,12 +1,11 @@
 
+node[:lb][:service][:provider] = "lb_haproxy"
+#adsfasdf
 log "  Sending remote attach request..."
 lb "mytest" do
   backend_id node[:rightscale][:instance_uuid]
   backend_ip node[:app][:ip]
   backend_port 8080 # <- virtual host port in apache for tilecache from input.
-  service_region node[:lb][:service][:region]
-  service_lb_name node[:lb][:service][:lb_name]
-  service_account_id node[:lb][:service][:account_id]
-  service_account_secret node[:lb][:service][:account_secret]
+  pool_name 'mytest'
   action :attach_request
 end

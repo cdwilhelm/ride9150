@@ -7,12 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# Updating apache listen ports configuration
-template "#{node[:apache][:dir]}/ports.conf" do
-  cookbook "apache2"
-  source "ports.conf.erb"
-  variables :apache_listen_ports => "8080"
-end
 
 mytest "vhost" do
   destination "#{node[:repo][:default][:destination]}/mytest"

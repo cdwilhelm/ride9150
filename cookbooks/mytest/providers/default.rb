@@ -9,6 +9,13 @@ action :setup_vhost do
     enable false
   end
 
+  # Updating apache listen ports configuration
+  template "#{node[:apache][:dir]}/ports.conf" do
+    cookbook "apache2"
+    source "ports.conf.erb"
+    variables :apache_listen_ports => [8000,8080]
+  end
+
   # Adds php port to list of ports for webserver to listen on
   #app_add_listen_port php_port
 

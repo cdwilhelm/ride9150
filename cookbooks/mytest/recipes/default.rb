@@ -7,9 +7,11 @@
 # All rights reserved - Do Not Redistribute
 #
 
+node[:mytest][:port]="8080"
+
 mytest "vhost" do
   destination "#{node[:repo][:default][:destination]}/mytest"
-  port  8080
+  port  node[:mytest][:port]
   action :setup_vhost
 end
 

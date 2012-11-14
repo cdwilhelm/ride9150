@@ -9,7 +9,7 @@
 
 # create the apache virtual host file
 # 
-mytest "vhost" do
+vhost_test "vhost" do
   destination "#{node[:repo][:default][:destination]}/apps"
   port  "8080"
   action :setup_vhost # see setup_vhost provider

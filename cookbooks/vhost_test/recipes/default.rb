@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: mytest
+# Cookbook Name:: vhost_test
 # Recipe:: default
 #
 # Copyright 2012, YOUR_COMPANY_NAME
@@ -18,7 +18,7 @@ end
 # install the app
 # this is just a simple app
 directory "#{node[:repo][:default][:destination]}/apps/vhost_test" do
-  mode 777
+  mode "0755"
   recursive true
   action :create
 end
@@ -26,7 +26,13 @@ end
 # install app files.  normally would be a php or other app.
 # this is just a html file to show the test configuration
 template "#{node[:repo][:default][:destination]}/apps/vhost_test/index.html" do
-  mode 777
+  mode "0755"
+  source "index.erb"
+end
+
+# used for healthcheck
+template "#{node[:repo][:default][:destination]}/apps/index.html" do
+  mode "0755"
   source "index.erb"
 end
 

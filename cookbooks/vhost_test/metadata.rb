@@ -9,5 +9,7 @@ depends 'lb'
 depends "web_apache"
 depends "apache2"
 
-recipe "mytest::default", "Installs my app, config apache"
-recipe "mytest::do_attach_lb", "attach lb"
+recipe "vhost_test::default", "Installs my app, configures apache vhost file"
+recipe "vhost_test::do_attach_lb", "attach the app to the lb"
+
+# add attributes

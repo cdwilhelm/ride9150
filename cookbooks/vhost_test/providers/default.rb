@@ -1,4 +1,5 @@
 # Setup apache PHP virtual host
+# mostly out of the box from cookbook web_apache/providers/default.rb
 action :setup_vhost do
 
   project_root = new_resource.destination
@@ -16,15 +17,12 @@ action :setup_vhost do
     variables :apache_listen_ports => [8000,8080]
   end
 
-  # Adds php port to list of ports for webserver to listen on
-  #app_add_listen_port php_port
-
   # Configure apache vhost for PHP
-  web_app "mytest" do
+  web_app "vhost_test" do
     template "app_server.erb"
     docroot project_root
     vhost_port php_port.to_s
-    server_name "mytest"
+    server_name "vhost_test.example.com"
     cookbook "web_apache"
   end
 

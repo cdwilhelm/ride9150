@@ -1,0 +1,34 @@
+{
+  "platforms": {
+  },
+  "description": "Installs/Configures mytest",
+  "providing": {
+  },
+  "groupings": {
+  },
+  "replacing": {
+  },
+  "version": "0.0.1",
+  "attributes": {
+  },
+  "recommendations": {
+  },
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "conflicting": {
+  },
+  "maintainer_email": "YOUR_EMAIL",
+  "maintainer": "YOUR_COMPANY_NAME",
+  "recipes": {
+    "vhost_test::do_attach_lb": "attach the app to the lb",
+    "vhost_test::default": "Installs my app, configures apache vhost file"
+  },
+  "name": "vhost_test",
+  "suggestions": {
+  },
+  "dependencies": {
+    "lb": ">= 0.0.0",
+    "apache2": ">= 0.0.0",
+    "web_apache": ">= 0.0.0"
+  },
+  "license": "All rights reserved"
+}
